@@ -1,0 +1,25 @@
+N-Layer Proje Yapýsý
+
+Core
+-Model(Entity)
+-DTOs
+-Repository Interfaces
+-Service Interfaces
+-UnitOfWork Interfaces
+      |
+      |
+Repository
+-Migrations
+-Seeds
+-Repository Impl
+-UnitOfWork Impl
+      |
+      |
+Service
+-Mapping
+-Service Impl
+-Validations
+-Exceptions
+      |
+      |
+-API  /  -WEB

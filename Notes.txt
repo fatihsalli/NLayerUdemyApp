@@ -1,0 +1,67 @@
+Asp.Net Core Best Practises
+
+=> Http method tipi seçimi (API)(Client istek yaparken best practises)
+	- Get (Serverdan data almak için, Örneðin client id=1 olan ürünleri istediðinde get isteði yapmalýdýr.)
+	- Post (Yeni nesne kayýt iþlemleri için kullanýlmalýdýr.)
+	- Put (Nesne güncelleme iþlemleri için kullanýlmalýdýr.Best practise Put olmalýdýr.)
+	- Delete (Nesne silme iþlemleri için kullanýlmalýdýr.)
+
+=> Doðru Api/Endpoint yapýsý (Best Practises)
+	-Method-Get Doðru: Myapi.com/api/products / Yanlýþ: Myapi.com/api/getproduct
+	-Method-Get Doðru: Myapi.com/api/products/10 / Yanlýþ: Myapi.com/api/getproductbyId/10
+	-Method-Post Doðru: Myapi.com/api/products / Yanlýþ: Myapi.com/api/product/saveproduct
+	-Method-Put Doðru: Myapi.com/api/products / Yanlýþ: Myapi.com/api/product/updateproduct
+	-Method-Delete Doðru: Myapi.com/api/products/2 / Yanlýþ: Myapi.com/api/product/deleteproduct
+
+=> Doðru Http Cevap Durum Kodlarý
+	-100 information responses (Bilgilendirici cevaplar)
+	-200 successful responses (Client isteði baþarýlý)
+		-200 ok
+		-201 created
+		-204 NoContent
+	-300 redirect messages (Yönlendirici mesajlar / Baþka bir endpointe yönlendiriyordur)
+	-400 client error responses (Client tarafýndan hatalý bir istek gönderilmiþse)
+		-400 Bad Request
+		-401 Unauthorizes
+		-403 Forbid
+		-404 NotFound
+	-500 server error responses (Veri tabaný hatalarý ile alakalý durum kodlarýdýr)
+		-500 internat server error
+
+=> Doðru endpoint url yapýsý
+	- Get https://myapi.com/categories/2/products --> Doðru (Parent-child iliþkisi)
+	- Get https://myapi.com/categories/2/products/5 --> Yanlýþ (Endpointin asýl amacý kategori ile iþlem yapmak.)
+	- Get https://myapi.com/products/5 --> Doðru (Id'si 5 olan ürün isteniyorsa product tarafýnda yapýlmalýdýr istek)
+
+=> Request içerisinde ayný propety'i almaktan kaçýnýn
+	[HttpPut("{id}")]
+	Public IActionResult Update(Product product,int id) => burada hem id alýyoruz hem de product içinde id var o sebeple best practise aþaðýda
+	{
+		//Güncelleme iþlemleri
+	}
+
+	[HttpPut] //Best Practises olarak doðru yöntem
+	Public IActionResult Update(Product product) => id'yi product nesnesi üzerinden alabiliriz.
+	{
+		//Güncelleme iþlemleri
+	}
+
+=> Asp.net Core uygulamanýn startup.cs dosyasýný mümkün olduðunca sade býrak (IServiceCollection üzerinden extension metot oluþturup ilgili katmanda kullanýlmalýdýr.)
+	-public void ConfigureServices (IServiceCollection services) - Servisleri implemente ettiðimiz
+	-public void Configure (IApplicationBuilder app,IWebHostEnvironment env) -Katmanlarý eklediðimiz yer
+
+=> Uygulamanýzý münkün oldukça küçük parçalara böl
+	-MySite.Web => web uygulamasý
+	-MySite.API => api uygulamasý
+	-MySite.Core => class library
+	-MySite.Data => class library
+	-MySite.Service => class library
+	-MySite.Logging => class library
+
+=> Controller sýnýflarýnýnz mümkün oldukça temiz tutun. Business kodu bulundurmayýn.
+=> Action methodlarýnýzý mümkün oldukça temiz tutun. Business kodu bulundurmayýn.
+=> Hatalarý global olarak ele alýn. Action methodlar içerisinde try catch bloklarý kullanmayýn.
+=> Tekrar eden kodlardan kaçmak için filter kullan.
+=> Action methodlardan direk olarak model sýnýflarýnýzý dönmeyin. Ýlgili modellerin DTO(Data Transfer Object) sýnýflarýný dönün.
+	-Mapster,Automapper gibi kütüphaneler ile dönüþtürebiliriz.
+
