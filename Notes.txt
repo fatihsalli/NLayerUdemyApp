@@ -75,8 +75,7 @@ Asp.Net Core Best Practises
 
 => IQueryable tipi Database'e direkt sorgu göndermez. Where,OrderBy gibi sorgularý yapýp en son ToList veya ToListAsync dediðimiz anda veritabanýna sorgu atar. O ana kadar bellekte tutulur.
 
-
-
+=> Unit of Work - SaveChange methotunu kontrollü çaðýrmak için ayrý bir katmanda oluþturulur. Her repository iþleminden sonra SaveChange çaðýrmak yerine bunlarý toplu þekilde Unit Of Work Interface'i ile yapýlýr.
 
 -------------------------------------------------------------------------
 
