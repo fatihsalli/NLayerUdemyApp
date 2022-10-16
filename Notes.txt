@@ -65,3 +65,19 @@ Asp.Net Core Best Practises
 => Action methodlardan direk olarak model sýnýflarýnýzý dönmeyin. Ýlgili modellerin DTO(Data Transfer Object) sýnýflarýný dönün.
 	-Mapster,Automapper gibi kütüphaneler ile dönüþtürebiliriz.
 
+=> Neden Entity - Veritabanýnda karþýlýðý bulunan tablolar mevcutsa bunlara Entity denir.
+
+=> Interfaceler sözleþme yani kontratlarýn tanýmlandýðý yerlerdir.
+
+=> Classlarýn default eriþim belirleyicisi Internal, class içerisindeki metotlarýn ise private'dýr.
+
+=> .Net 6 ile default olarak gelen özellik "Nullable". Uygulamada null hatalarýný engellemek için kodlama   esnasýnda muhtemel null olabilecek yerleri gösterir. Nullable check özelliðini kapatmak için iki yöntem var 1.Yöntem - Nullable olabilecek objeyi seçip sýrasýyla "Suppress or Configure issues"-"Configure CS8618 severity"-"Suggestion" bu "editorconfig adýnda bir dosya oluþturup ayarý kaydeder." 2.Yöntem Core-properties-general-nullable-disable.
+
+=> IQueryable tipi Database'e direkt sorgu göndermez. Where,OrderBy gibi sorgularý yapýp en son ToList veya ToListAsync dediðimiz anda veritabanýna sorgu atar. O ana kadar bellekte tutulur.
+
+
+
+
+-------------------------------------------------------------------------
+
+=>ICollection araþtýrýlacak
