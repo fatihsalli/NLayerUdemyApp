@@ -15,6 +15,7 @@ namespace NLayer.Repository.Configuration
         {
             //Birebir ilişki olduğu için HasForeignKey de bu ilişkinin kimde olduğu belirtilmelidir.
             builder.HasOne(x => x.Product).WithOne(x => x.ProductFeature).HasForeignKey<ProductFeature>(x => x.ProductId);
+            builder.Property(x => x.Color).HasMaxLength(50);
         }
     }
 }
