@@ -10,8 +10,9 @@ namespace NLayer.Core.Services
         Task<IEnumerable<T>> GetAllAsync();
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
-        Task AddAsync(T entity);
-        Task AddRangeAsync(IEnumerable<T> entities);
+        //AddAsync ve AddRangeAsync methodları servis tarafında çalıştığı database'e veri ekleyecek. Bu sebeple eklenen verilerin id'sini görebilmek adına geriye değer döndürüyoruz.
+        Task<T> AddAsync(T entity);
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
         //Update ve Remove u niye asenkron yaptık veritabanına değişikliklerin yansıması için SaveChangeAsync kullanacağımız için asenkron tanımladık.
         Task UpdateAsync(T entity);
         Task RemoveAsync(T entity);

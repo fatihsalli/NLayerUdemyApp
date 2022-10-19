@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 //Instancelarýmýzý alýyoruz.
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //IGenericRepository birden fazla tip alsaydý o zaman <,> => 2 tane <,,> => 3 tane olarak 
-//builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>);
+//builder.Services.AddScoped(typeof(IGenericRepository<A,B,C>), typeof(GenericRepository<A,B,C>);
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 //builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 

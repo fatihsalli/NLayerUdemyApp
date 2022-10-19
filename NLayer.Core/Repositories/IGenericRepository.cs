@@ -7,7 +7,7 @@ namespace NLayer.Core.Repositories
         Task<T> GetByIdAync(int id);
         //=>GetAll,Where Neden asenkron tanımlamadık aşağıda henüz veritabanına sorgu yapmıyoruz aşağıdaki metot ile veritabanına yapılacak sorguyu oluşturuyoruz. Bu sebeple IQueryable seçtik. ToList dendiğinde veritabanına gidip sorgu yapar.
         //=>productRepository.where(x=> x.id>5).OrderBy.ToList() - ToList dediğim anda sorgu yapar.
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
+        IQueryable<T> GetAll();
         IQueryable<T> Where(Expression<Func<T,bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task AddAsync(T entity);
