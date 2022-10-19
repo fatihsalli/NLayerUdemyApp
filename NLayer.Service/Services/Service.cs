@@ -46,29 +46,32 @@ namespace NLayer.Service.Services
             return await _repository.GetAll().ToListAsync();
         }
 
-        public Task<T> GetByIdAync(int id)
+        public async Task<T> GetByIdAync(int id)
         {
-            throw new NotImplementedException();
+            return await _repository.GetByIdAync(id);
+        }
+        //SaveChange asenkron olduğu için yani CommitAsync Remove ve update'i asenkron olarak tanımladık.
+        public async Task RemoveAsync(T entity)
+        {
+            _repository.Remove(entity);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveAsync(T entity)
+        public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            _repository.RemoveRange(entities);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveRangeAsync(IEnumerable<T> entities)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(T entity)
-        {
-            throw new NotImplementedException();
+            _repository.Update(entity);
+            await _unitOfWork.CommitAsync();
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _repository.Where(expression);
         }
     }
 }

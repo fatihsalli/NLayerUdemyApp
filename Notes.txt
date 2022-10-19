@@ -77,6 +77,10 @@ Asp.Net Core Best Practises
 
 => Unit of Work - SaveChange methotunu kontrollü çaðýrmak için ayrý bir katmanda oluþturulur. Her repository iþleminden sonra SaveChange çaðýrmak yerine bunlarý toplu þekilde Unit Of Work Interface'i ile yapýlýr.
 
+=> AutoMapper (entity<>dto) en çok kullanýlan mapperlardan biridir. Görevi entity'i dto'ya dto'yu da entity'e map iþlemini yapmaya yarar.
+
 -------------------------------------------------------------------------
 
 =>ICollection araþtýrýlacak
+
+=>Assembly kullanýmý araþtýrýlacak

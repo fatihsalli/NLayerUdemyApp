@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Core
+namespace NLayer.Core.Models
 {
-    public class Product:BaseEntity
+    public class Product : BaseEntity
     {
         //Constructor tetiklendiğinde name gelmez ise hata fırlatması için aşağıdaki fonksiyon yazılabilir. Name alanının null gelmemesi için oluşturulmuştur.
         //public Product(string name)
