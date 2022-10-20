@@ -17,7 +17,7 @@ namespace NLayer.Core.DTOs
         public int StatusCode { get; set; }
         public List<string> Errors { get; set; }
 
-        //Static factory method tanımladık factory desing patterndan gelir. Success ve Fail durumlarına göre geriye new instance lar dönüyoruz. (Nesne üretme yolu)
+        //Static factory method tanımladık factory desing patternden gelir. Success ve Fail durumlarına göre geriye new instance lar dönüyoruz. (Nesne üretme yolu)
         public static CustomResponseDto<T> Success(int statusCode,T data)
         {
             return new CustomResponseDto<T> { StatusCode = statusCode, Data = data};
