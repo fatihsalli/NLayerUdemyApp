@@ -4,7 +4,7 @@ namespace NLayer.Core.Services
 {
     public interface IService<T> where T : class
     {
-        //IGenericRepository methotları kopyaladık ancak proje ilerlediğinde productService veya categoryService oluşturulduğunda dönüş tipleri farklı olacağı için ayırmak gereklidir.
+        //IGenericRepository methotları kopyaladık ancak proje ilerlediğinde productService veya categoryService oluşturulduğunda dönüş tipleri farklı olacağı için ayırmak gereklidir. Repositoryler entity yani databasede tablosu bulunan classları geriye dönerken serviceler ise client tarafında çalıştığı için geriye Dto nesneleri dönerler. En büyük farklardan biri budur.
         Task<T> GetByIdAync(int id);
         //GetAll asenkron yapıp tüm datayı çekmesi için Expression ifadesini kaldırdık.
         Task<IEnumerable<T>> GetAllAsync();

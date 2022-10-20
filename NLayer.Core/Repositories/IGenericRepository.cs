@@ -4,7 +4,7 @@ namespace NLayer.Core.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {
-        Task<T> GetByIdAync(int id);
+        Task<T> GetByIdAsync(int id);
         //=>GetAll,Where Neden asenkron tanımlamadık aşağıda henüz veritabanına sorgu yapmıyoruz aşağıdaki metot ile veritabanına yapılacak sorguyu oluşturuyoruz. Bu sebeple IQueryable seçtik. ToList dendiğinde veritabanına gidip sorgu yapar.
         //=>productRepository.where(x=> x.id>5).OrderBy.ToList() - ToList dediğim anda sorgu yapar.
         IQueryable<T> GetAll();

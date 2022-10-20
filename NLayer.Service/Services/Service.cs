@@ -48,7 +48,7 @@ namespace NLayer.Service.Services
 
         public async Task<T> GetByIdAync(int id)
         {
-            return await _repository.GetByIdAync(id);
+            return await _repository.GetByIdAsync(id);
         }
         //SaveChange asenkron olduğu için yani CommitAsync Remove ve update'i asenkron olarak tanımladık.
         public async Task RemoveAsync(T entity)

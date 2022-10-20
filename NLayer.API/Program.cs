@@ -25,6 +25,9 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 //AutoMapper'ý tanýmlýyoruz. Assembly olarak typeof kabul ettiði için MapProfile olarak yazdýk. Eðer ki birden fazla MapProfile tanýmlamýþ olsaydýk Assembly mantýðýyla klasörü göstermemiz gerekirdi.
 builder.Services.AddAutoMapper(typeof(MapProfile));
+//Product özelinde oluþturduðumuz repository ve servicelerin instance ýný alýyoruz.
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 //Database baðlantý
 builder.Services.AddDbContext<AppDbContext>(x =>
