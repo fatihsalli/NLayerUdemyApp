@@ -4,6 +4,9 @@ using NLayer.Core.DTOs;
 
 namespace NLayer.API.Controllers
 {
+    //CustomBaseController'ı category ve product controller'a miras verdiğimiz için tekrar route vs. yazmamıza gerek yok. Buradan alacaktır.
+    [Route("api/[controller]")]
+    [ApiController]
     public class CustomBaseController : ControllerBase
     {
         //CustomBaseController oluşturduk bunu oluşturma amacımız Api controller tarafında return Ok,Bad Request vs. yazmaktansa oluşturduğumuz CustomResponseDto'yu kullanarak response'a göre status code veriyoruz.

@@ -7,19 +7,15 @@ using NLayer.Core.Services;
 
 namespace NLayer.API.Controllers
 {
-    //"api/[controller]/[action] tanımlamasını neden yapmadık? Zaten Get-Post vb. ayırdık. Id'ye göre bulmakistediği taktirde ise GET=> www.mysite.com/api/products/5 şeklinde istek yapılacak."
-    [Route("api/[controller]")]
-    [ApiController]
+    //"api/[controller]/[action] tanımlamasını neden yapmadık? Zaten Get-Post vb. ayırdık. Id'ye göre bulmak istediği taktirde ise GET=> www.mysite.com/api/products/5 şeklinde istek yapılacak."
     public class ProductsController : CustomBaseController
     {
         //Controllerlarda repository değil serviceleri implemente etmek gerekir.
         private readonly IMapper _mapper;
-        private readonly IService<Product> _service;
         private readonly IProductService _productService;
         public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
         {
             _mapper = mapper;
-            _service = service;
             _productService = productService;
         }
 
@@ -34,7 +30,7 @@ namespace NLayer.API.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var products = await _service.GetAllAsync();
+            var products = await _productService.GetAllAsync();
             //Automapper kullanarak mapleme yani transfer işlemini gerçekleştirdik.
             var productsDto = _mapper.Map<List<ProductDto>>(products.ToList());
             //Her seferinde hem Ok vs. yazmaktansa CustomBaseControllerda CreateActionResult methodu tanımladık.
@@ -46,7 +42,7 @@ namespace NLayer.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var product = await _service.GetByIdAync(id);
+            var product = await _productService.GetByIdAync(id);
             var productDto= _mapper.Map<ProductDto>(product);
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productDto));
         }
@@ -55,7 +51,7 @@ namespace NLayer.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Save(ProductDto productDto)
         {
-            var product = await _service.AddAsync(_mapper.Map<Product>(productDto));
+            var product = await _productService.AddAsync(_mapper.Map<Product>(productDto));
             //Client'a response dönebilmek için tekrar mapleyerek productsDto'yu geriye döndük.
             var productsDto = _mapper.Map<ProductDto>(product);
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(201, productsDto));
@@ -65,7 +61,7 @@ namespace NLayer.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
-            await _service.UpdateAsync(_mapper.Map<Product>(productDto));
+            await _productService.UpdateAsync(_mapper.Map<Product>(productDto));
             //Geriye değer döndürmediğimiz için Success'in diğer methodunu kullandık. NoContentDto ile birlikte.
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
@@ -74,8 +70,8 @@ namespace NLayer.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)
         {
-            var product = await _service.GetByIdAync(id);
-            await _service.RemoveAsync(product);
+            var product = await _productService.GetByIdAync(id);
+            await _productService.RemoveAsync(product);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 

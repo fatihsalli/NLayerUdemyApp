@@ -28,6 +28,10 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 //Product özelinde oluþturduðumuz repository ve servicelerin instance ýný alýyoruz.
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+//Category özelinde oluþturduðumuz repository ve servicelerin instance ýný alýyoruz.
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 
 //Database baðlantý
 builder.Services.AddDbContext<AppDbContext>(x =>
