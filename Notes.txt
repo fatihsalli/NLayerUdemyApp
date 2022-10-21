@@ -81,6 +81,7 @@ Asp.Net Core Best Practises
 
 => Fluent Validation için "FluentValidation.AspNetCore" paketini BLL yani Service katmanýna yüklüyoruz.
 
+=> Filter kullanýmý Action öncesi veya sonrasý,methotlara gelen request gelmeden önce veya geldikten sonra gibi durumlarda müdahale edebilmemizi saðlamaktadýr.
 
 
 -------------------------------------------------------------------------
@@ -88,3 +89,5 @@ Asp.Net Core Best Practises
 =>ICollection araþtýrýlacak
 
 =>Assembly kullanýmý araþtýrýlacak
+
+=>Filter kullanýmý araþtýrýlacak

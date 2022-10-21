@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.Services;
 
 namespace NLayer.API.Controllers
 {
+    //Tüm Controllerlara tek tek yazmak yerinde globalde yazıyoruz."ValidateFilterAttribute" isimle oluşturduğumuz class ile aslına response verirken araya giriyoruz.
+    //[ValidateFilterAttribute]
     public class CategoriesController : CustomBaseController
     {
         private readonly ICategoryService _categoryService;
