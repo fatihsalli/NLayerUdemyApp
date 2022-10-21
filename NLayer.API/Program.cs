@@ -70,7 +70,7 @@ app.UseHttpsRedirection();
 
 //Burada app. ile tanýmlanan tüm methodlar birer Middleware'dir. Middleware'lerden geçerek Controllerdaki actiona gelir.
 //Middleware'i aktif hale getirmek için burada tetikledik. Hata olduðu için aþaðýdaki middlewarelerden yukarýda olmasý önemlidir.
-app.UserCustomException();
+app.UseCustomException();
 
 app.UseAuthorization();
 

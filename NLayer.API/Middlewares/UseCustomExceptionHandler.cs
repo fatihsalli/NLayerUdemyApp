@@ -9,7 +9,7 @@ namespace NLayer.API.Middlewares
     public static class UseCustomExceptionHandler
     {
         //Buradan program.cs app..... olarak yazdığımız tarafa ulaşıyoruz IApplication Builder sayesinde
-        public static void UserCustomException(this IApplicationBuilder app)
+        public static void UseCustomException(this IApplicationBuilder app)
         {
             //app.UseExceptionHandler()=> hazır sunulan exception'dır.
             app.UseExceptionHandler(config=>
@@ -24,6 +24,7 @@ namespace NLayer.API.Middlewares
                     var statusCode=exceptionFeature.Error switch
                     {
                         ClientSideException=>400,
+                        NotFoundException=>404,
                         _ =>500
                     };
                     context.Response.StatusCode = statusCode;
