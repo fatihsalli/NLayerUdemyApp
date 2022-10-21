@@ -83,6 +83,13 @@ Asp.Net Core Best Practises
 
 => Filter kullanýmý Action öncesi veya sonrasý,methotlara gelen request gelmeden önce veya geldikten sonra gibi durumlarda müdahale edebilmemizi saðlamaktadýr.
 
+=>Middleware araþtýrýlacak
+=>Client'tan gelen Request'e karþýlýk Response'a kadar farklý iþlemler gerçekleþtirmek ve sürecin gidiþatýna yön vermek için "Middleware" larý kullanýyoruz. Request ile Response arasýndaki farklý iþlemler middleware'dir yani ara yazýlýmlar. Middleware'ler use adýyla baþlar. Core çekirdeðinde gelen hazýr middlewareler=>
+	-Run Metodu => Run fonksiyonu kendisinden sonra gelen middleware'i tetiklemez ve akýþý keser. Bu etkiye Short Circuit(Kýsa Devre)
+	-Use Metodu => Devreye girdikten sonra süreçte sýraki middleware'i çaðýrmakta ve normal middleware iþlevi bittikten sonra geriye dönüp devam edebilen bir yapýya sahiptir.
+	-Map Metodu => Middleware'i talep gönderen path'e göre filtrelemek isteyebiliriz. Bunun için Use ya da Run fonksiyonlarýnda if kontrolü saðlayabilir yahut Map metodu ile daha profesyonel iþlem yapabiliriz.
+	-MapWhen Metodu => Map metodu ile sadece request'in yapýldýðý path'e göre filtreleme yapýlýrken, MapWhen metodu ile gelen request'in herhangi bir özelliðine göre bir filtreleme iþlemi gerçekleþtirilebilir.
+
 
 -------------------------------------------------------------------------
 
@@ -91,5 +98,3 @@ Asp.Net Core Best Practises
 =>Assembly kullanýmý araþtýrýlacak
 
 =>Filter kullanýmý araþtýrýlacak
-
-=>Middleware araþtýrýlacak

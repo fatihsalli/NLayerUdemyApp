@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace NLayer.API.Middlewares
 {
-    //Use Exception Handler zaten halihazırda Api ile bize sunulur. Burada ise extension bir method oluşturarak exception'ı özelleştirmiş oluyoruz.
+    //Use Exception Handler zaten halihazırda Api ile bize sunulur. Burada ise extension bir metot oluşturarak exception'ı özelleştirmiş oluyoruz.
     public static class UseCustomExceptionHandler
     {
         //Buradan program.cs app..... olarak yazdığımız tarafa ulaşıyoruz IApplication Builder sayesinde

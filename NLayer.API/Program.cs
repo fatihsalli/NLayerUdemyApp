@@ -57,6 +57,7 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
+//Middlewareleri tanýmladýðýmýz alan
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
