@@ -79,6 +79,10 @@ Asp.Net Core Best Practises
 
 => AutoMapper (entity<>dto) en çok kullanýlan mapperlardan biridir. Görevi entity'i dto'ya dto'yu da entity'e map iþlemini yapmaya yarar.
 
+=> Fluent Validation için "FluentValidation.AspNetCore" paketini BLL yani Service katmanýna yüklüyoruz.
+
+
+
 -------------------------------------------------------------------------
 
 =>ICollection araþtýrýlacak
