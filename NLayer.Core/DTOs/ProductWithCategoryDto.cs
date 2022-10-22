@@ -9,6 +9,7 @@ namespace NLayer.Core.DTOs
 {
     public class ProductWithCategoryDto:ProductDto
     {
+        //Category ismi önemli yoksa bulamıyor.
         public CategoryDto Category { get; set; }
 
 

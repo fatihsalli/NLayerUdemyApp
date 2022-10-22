@@ -36,6 +36,7 @@ namespace NLayer.API.Controllers
             var productsDto = _mapper.Map<List<ProductDto>>(products.ToList());
             //Her seferinde hem Ok vs. yazmaktansa CustomBaseControllerda CreateActionResult methodu tanımladık.
             //Soluk bir ifade var ise bunu belirtmeye gerek olmadığını ifade eder.
+            //return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productsDto)); bunu yazmak yerine CreateActionResult adında bir metot ile Status Code'u kendimiz dönüyoruz.
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDto));
         }
 
@@ -53,7 +54,7 @@ namespace NLayer.API.Controllers
         public async Task<IActionResult> Save(ProductDto productDto)
         {
             var product = await _productService.AddAsync(_mapper.Map<Product>(productDto));
-            //Client'a response dönebilmek için tekrar mapleyerek productsDto'yu geriye döndük.
+            //Client'a response dönebilmek için tekrar mapleyerek productsDto'yu geriye döndük. Oluşturulan ürünün Id'sini görmek isteyebilir.
             var productsDto = _mapper.Map<ProductDto>(product);
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(201, productsDto));
         }

@@ -15,6 +15,7 @@ namespace NLayer.API.Controllers
         public IActionResult CreateActionResult<T>(CustomResponseDto<T> response)
         {
             if (response.StatusCode == 204)
+                //ObjectResult IActionResulttan miras aldığı için Ok,BadRequest yerine biz bu şekilde kendimiz belirleyebiliyoruz.
                 return new ObjectResult(null)
                 {
                     StatusCode = response.StatusCode
