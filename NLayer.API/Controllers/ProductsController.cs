@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
 using NLayer.Core.Services;
@@ -39,6 +40,9 @@ namespace NLayer.API.Controllers
         }
 
         // GET=> www.mysite.com/api/products/5 => bu 5 'i görmek için HttpGet içinde tanımlıyoruz.
+        //Oluşturduğumuz NotFoundFilter'ı direkt olarak [NotFoundFilter] şeklinde ValidationFilter'daki gibi yazamayız. Bunun iki sebebi vardır."ValidateFilterAttribute" "ActionFilterAttribute" miras alır, "NotFoundFilter" ise "IAsyncActionFilter" dan miras aldığı için [Attribute] mirası yoktur. Neden IAsyncActionFilter seçtik? 1-Dinamik kullanmak için (Generic durum var) 2-Constructorda parametre geçtiğim için Attribute ve filterları [NotFoundFilter] şeklinde direkt yazamam aşağıdaki gibi yazmam gerekiyor.
+        //Filter ile sistemde olmayan bir Id request edildiğinde actiona girmeden NotFound olarak döner. GetById içerisinde yazdığımız extensionda ise action içine girerek Id'nin database de olmadığını anladığında geriye Notfound döner fark budur.
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

@@ -4,11 +4,11 @@ using NLayer.Core.DTOs;
 
 namespace NLayer.API.Filters
 {
-    //Hazır bir filter attribute'unden miras aldırıyoruz.
+    //Hazır bir filter attribute'unden miras aldırıyoruz. Senkron yazdık, NotFoundFilterda asenkron yazıldı. Eğitim amaçlı...
     public class ValidateFilterAttribute:ActionFilterAttribute
     {
         //Neden Service katmanında yazmadık? MVC ve Api tarafındaki yazacağımız filterlar farklı olduğu için.
-        //Burada override ediyoruz metot çalışırken,metot çalıştığında vs. gibi hangi noktada mühalae etmek istiyorsak onu seçiyoruz.
+        //Burada override ediyoruz metot çalışırken,metot çalıştığında vs. gibi hangi noktada müdahale etmek istiyorsak onu seçiyoruz.
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             //Filterlar Controllerlar içerisine gelen request'e müdahale etmek için kullanılır. Request gelmeden önce,geldikten sonra vs.

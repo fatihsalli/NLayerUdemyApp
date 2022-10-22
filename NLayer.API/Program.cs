@@ -30,6 +30,9 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Generic olduðu için typeof ile belirttik. Service'i implemente ettiðimiz için burada belirtmemiz gerekiyor.
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
+
 //Instancelarýmýzý alýyoruz.
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //IGenericRepository birden fazla tip alsaydý o zaman <,> => 2 tane <,,> => 3 tane olarak 
