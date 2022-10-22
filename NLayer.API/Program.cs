@@ -1,9 +1,12 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLayer.API.Filters;
 using NLayer.API.Middlewares;
+using NLayer.API.Modules;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -32,22 +35,21 @@ builder.Services.AddSwaggerGen();
 
 //Generic olduðu için typeof ile belirttik. Service'i implemente ettiðimiz için burada belirtmemiz gerekiyor.
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
-
-//Instancelarýmýzý alýyoruz.
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-//IGenericRepository birden fazla tip alsaydý o zaman <,> => 2 tane <,,> => 3 tane olarak 
-//builder.Services.AddScoped(typeof(IGenericRepository<A,B,C>), typeof(GenericRepository<A,B,C>);
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 //AutoMapper'ý tanýmlýyoruz. Assembly olarak typeof kabul ettiði için MapProfile olarak yazdýk. Eðer ki birden fazla MapProfile tanýmlamýþ olsaydýk Assembly mantýðýyla klasörü göstermemiz gerekirdi.
 builder.Services.AddAutoMapper(typeof(MapProfile));
-//Product özelinde oluþturduðumuz repository ve servicelerin instance ýný alýyoruz.
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-//Category özelinde oluþturduðumuz repository ve servicelerin instance ýný alýyoruz.
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+//Instancelarýmýzý alýyoruz. AutoFac kütüphanesi ile repository,service ve unitofworklerin Scope olarak instance'ýný aldýk o sebeple burada gerek kalmadý bu instancelara.
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+//IGenericRepository birden fazla tip alsaydý o zaman <,> => 2 tane <,,> => 3 tane olarak 
+//builder.Services.AddScoped(typeof(IGenericRepository<A,B,C>), typeof(GenericRepository<A,B,C>);
+//builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+//builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+//Product özelinde oluþturduðumuz repository ve servicelerin instance ýný alýyoruz.
+//builder.Services.AddScoped<IProductRepository, ProductRepository>();
+//builder.Services.AddScoped<IProductService, ProductService>();
+//Category özelinde oluþturduðumuz repository ve servicelerin instance ýný alýyoruz.
+//builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+//builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 //Database baðlantý
 builder.Services.AddDbContext<AppDbContext>(x =>
@@ -60,6 +62,12 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 
     });
 });
+
+//Autofac kütüphanesini yükledikten sonra kullanmak için yazýyoruz.
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+//Buradan Autofac kullanarak yazdýðýmýz RepoServiceModule'ü dahil ediyoruz.
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 
 //Middlewareleri tanýmladýðýmýz alan
 var app = builder.Build();
