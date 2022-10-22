@@ -20,9 +20,10 @@ var builder = WebApplication.CreateBuilder(args);
 //FluentValidation'ý kullanmak için AddControllers'dan sonra "AddFluentValidation" methodu ile ekledik. "RegisterValidatorsFromAssemblyContaining" ile Validationlarý yaptýðýmýz class'ý vererek bulmasýný saðladýk. "ValidateFilterAttribute" adýnda bir class oluþturduk bunu tüm Controllerlara tek tek tanýmlamak yerine options içerisinde ekledik. Bu sayede global olarak tüm controllerlara bu filterý uygulamýþ olduk.
 builder.Services.AddControllers(options=> options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x=> x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
-//FluentValidationla dönen response'u aþaðýda pasif hale getirdik. Bu baskýlamayý yapmaya MVC tarafýnda gerek yoktur. Filterýn MVC tarafýnda aktif olma durumu yoktur. Ancak Api tarafýnda biz custom olarak oluþturduðumuz response'u dönmek için aþaðýdaki ayarý yapmalýyýz. Bununla birlikte filer yazmamýz gereklidir. Üst satýrda yazýldý.
+//FluentValidationla dönen response'u aþaðýda pasif hale getirdik. Bu baskýlamayý yapmaya MVC tarafýnda gerek yoktur. Filterýn MVC tarafýnda aktif olma durumu yoktur. Ancak Api tarafýnda biz custom olarak oluþturduðumuz response'u dönmek için aþaðýdaki ayarý yapmalýyýz. Bununla birlikte filter yazmamýz gereklidir. Üst satýrda yazýldý.
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
+    //Kendi döndüðü model filtresini inaktif duruma getirdik.
     options.SuppressModelStateInvalidFilter = true;
 });
 
@@ -70,6 +71,7 @@ app.UseHttpsRedirection();
 
 //Burada app. ile tanýmlanan tüm methodlar birer Middleware'dir. Middleware'lerden geçerek Controllerdaki actiona gelir.
 //Middleware'i aktif hale getirmek için burada tetikledik. Hata olduðu için aþaðýdaki middlewarelerden yukarýda olmasý önemlidir.
+//Middleware'lerin çalýþma mantýðý þudur; request ile beraber tetiklenerek ilerler ve response'u client'a gönderebilmek için tekrar geriye uðrayarak döngü tamamlanýr. Yani [] bu bir middleware olsun birden fazla middleware þu þekilde gösterilebilir [[[ ]]] ve döngü tamamlanýr.
 app.UseCustomException();
 
 app.UseAuthorization();

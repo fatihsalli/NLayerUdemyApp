@@ -42,7 +42,7 @@ namespace NLayer.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var product = await _productService.GetByIdAync(id);
+            var product = await _productService.GetByIdAsync(id);
             var productDto= _mapper.Map<ProductDto>(product);
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productDto));
         }
@@ -70,7 +70,7 @@ namespace NLayer.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)
         {
-            var product = await _productService.GetByIdAync(id);
+            var product = await _productService.GetByIdAsync(id);
             await _productService.RemoveAsync(product);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }

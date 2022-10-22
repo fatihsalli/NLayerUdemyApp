@@ -90,6 +90,7 @@ Asp.Net Core Best Practises
 	-Map Metodu => Middleware'i talep gönderen path'e göre filtrelemek isteyebiliriz. Bunun için Use ya da Run fonksiyonlarýnda if kontrolü saðlayabilir yahut Map metodu ile daha profesyonel iþlem yapabiliriz.
 	-MapWhen Metodu => Map metodu ile sadece request'in yapýldýðý path'e göre filtreleme yapýlýrken, MapWhen metodu ile gelen request'in herhangi bir özelliðine göre bir filtreleme iþlemi gerçekleþtirilebilir.
 
+=>
 
 -------------------------------------------------------------------------
 
