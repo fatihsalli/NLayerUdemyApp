@@ -17,10 +17,10 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//FluentValidation'ý kullanmak için AddControllers'dan sonra "AddFluentValidation" methodu ile ekledik. "RegisterValidatorsFromAssemblyContaining" ile Validationlarý yaptýðýmýz class'ý vererek bulmasýný saðladýk. "ValidateFilterAttribute" adýnda bir class oluþturduk bunu tüm Controllerlara tek tek tanýmlamak yerine options içerisinde ekledik.
+//FluentValidation'ý kullanmak için AddControllers'dan sonra "AddFluentValidation" methodu ile ekledik. "RegisterValidatorsFromAssemblyContaining" ile Validationlarý yaptýðýmýz class'ý vererek bulmasýný saðladýk. "ValidateFilterAttribute" adýnda bir class oluþturduk bunu tüm Controllerlara tek tek tanýmlamak yerine options içerisinde ekledik. Bu sayede global olarak tüm controllerlara bu filterý uygulamýþ olduk.
 builder.Services.AddControllers(options=> options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x=> x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
-//FluentValidationla dönen response u pasif hale getirdik. Bu baskýlamayý yapmaya MVC tarafýnda gerek yoktur. Filterýn MVC tarafýnda aktif olma durumu yoktur.
+//FluentValidationla dönen response'u aþaðýda pasif hale getirdik. Bu baskýlamayý yapmaya MVC tarafýnda gerek yoktur. Filterýn MVC tarafýnda aktif olma durumu yoktur. Ancak Api tarafýnda biz custom olarak oluþturduðumuz response'u dönmek için aþaðýdaki ayarý yapmalýyýz. Bununla birlikte filer yazmamýz gereklidir. Üst satýrda yazýldý.
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;

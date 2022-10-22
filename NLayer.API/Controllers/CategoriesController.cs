@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NLayer.API.Filters;
 using NLayer.Core.Services;
 
 namespace NLayer.API.Controllers
 {
-    //Tüm Controllerlara tek tek yazmak yerinde globalde yazıyoruz."ValidateFilterAttribute" isimle oluşturduğumuz class ile aslına response verirken araya giriyoruz.
+    //Tüm Controllerlara tek tek yazmak yerinde globalde yazıyoruz."ValidateFilterAttribute" isimle oluşturduğumuz class ile request sonrası response vermeden araya giriyoruz.
     //[ValidateFilterAttribute]
     public class CategoriesController : CustomBaseController
     {
@@ -16,7 +15,7 @@ namespace NLayer.API.Controllers
         }
 
         // GET=> www.mysite.com/api/categories/GetSingleCategoryByIdWithProducts/5
-        //Framework mapleyebilmesi için methotda nasıl yazıldıysa o şekilde yazılmalıdır.
+        //Framework mapleyebilmesi için methotda nasıl yazıldıysa o şekilde yazılmalıdır (categoryId).
         [HttpGet("[action]/{categoryId}")]
         public async Task<IActionResult> GetSingleCategoryByIdWithProducts(int categoryId)
         {
