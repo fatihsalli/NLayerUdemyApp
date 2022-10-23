@@ -52,6 +52,39 @@ namespace NLayer.Web.Controllers
             return View(productDto);
         }
 
+        public async Task<IActionResult> Update(int id)
+        {
+            var product=await _productService.GetByIdAsync(id);
+            var categories = await _categoryService.GetAllAsync();
+            var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
+            ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name",product.CategoryId);
+            return View(_mapper.Map<ProductDto>(product));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(ProductDto productDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var product = _mapper.Map<Product>(productDto);
+                await _productService.UpdateAsync(product);
+                return RedirectToAction(nameof(Index));
+            }
+            //Kullanıcı hatalı bir değer girdiği taktirde tekrar categorileri gönderiyoruzki ekrandaki dropdown list tekrar dolsun.
+            var categories = await _categoryService.GetAllAsync();
+            var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
+            ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name", productDto.CategoryId);
+            return View(productDto);
+        }
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            var product = await _productService.GetByIdAsync(id);
+            await _productService.RemoveAsync(product);
+            return RedirectToAction(nameof(Index));
+        }
+
+
 
 
 
