@@ -94,12 +94,14 @@ Asp.Net Core Best Practises
 	-Asp.net Core : BUilt-in DI Container => ASp.net ile hazýr olarak gelen containerdýr. (Constructor injection var,metot injection var)
 	-AutoFac bu da IOC Containerdýr. Bize .net ile sunulan containera ek olarak baþka özellikleri de vardýr. (ek olarak property injection var,Dinamik olarak DI containera nesne ekleme özelliði var.(Örneðin git þu assemblylerden sonu repository ile biten tüm interfaceleri ekle ve buna karþýlýk gelen sýnýflarý da ekle diyebiliyoruz.))
 
--------------------------------------------------------------------------
+=> CachingService (in-memory caching)
+	-Datalarý cashleyeceðiz bu sayede bize clientlardan bir istek geldiðinde önce cash de var mý yok mu kontrol edeceðiz eðer cash de var ise cashden döneceðiz. Cash de yok ise datayý repo dan çekip cashleyip o þekilde döneceðiz.
 
-=>ICollection araþtýrýlacak
+
+-------------------------------------------------------------------------
 
 =>Assembly kullanýmý araþtýrýlacak
 
 =>Filter kullanýmý araþtýrýlacak
 
-=>AutoFac kullanýmý araþtýrýlacak
+=>Cashleme nedir?

@@ -21,7 +21,7 @@ namespace NLayer.API.Modules
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
             //Generic değil o yüzden type olarak ekledik.
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
             //Bunun anlamı da bulunduğun klasörde ara demek
             var apiAssembly = Assembly.GetExecutingAssembly();
@@ -36,6 +36,10 @@ namespace NLayer.API.Modules
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            //"ProductService" yerine "ProductServiceWithNoCaching" i kullanması için burada belirtiyoruz. Burada şunu demek istiyoruz; IProductService interface'ini gördüğün zaman "ProductServiceWithNoCaching" in nesne örneğini al.
+            builder.RegisterType<ProductServiceWithNoCaching>().As<IProductService>();
+
 
 
         }

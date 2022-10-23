@@ -7,12 +7,13 @@ using NLayer.Core.UnitOfWorks;
 
 namespace NLayer.Service.Services
 {
-    public class ProductService : Service<Product>, IProductService
+    //Neden ismini "ProductService" den "ProductServiceWithNoCaching" olarak değiştirdik? AutoFac kütüphanesi kullanarak oluşturduğumuz "RepoServiceModule" class'ında sonu "Service" ile bitenlerin instance'nın alınması ile ilgili bir talimat verdik. O sebeple sonu Service ile bitmesin diye ismini değiştirdik.
+    public class ProductServiceWithNoCaching : Service<Product>, IProductService
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
 
-        public ProductService(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IProductRepository productRepository, IMapper mapper) : base(repository, unitOfWork)
+        public ProductServiceWithNoCaching(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IProductRepository productRepository, IMapper mapper) : base(repository, unitOfWork)
         {
             _productRepository = productRepository;
             _mapper = mapper;
