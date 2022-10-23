@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
 using NLayer.Core.Services;
+using NLayer.Web.Filters;
 
 namespace NLayer.Web.Controllers
 {
@@ -52,6 +53,7 @@ namespace NLayer.Web.Controllers
             return View(productDto);
         }
 
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         public async Task<IActionResult> Update(int id)
         {
             var product=await _productService.GetByIdAsync(id);

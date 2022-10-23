@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using NLayer.Repository;
 using NLayer.Service.Mapping;
 using NLayer.Service.Validations;
+using NLayer.Web.Filters;
 using NLayer.WEB.Modules;
 using System.Reflection;
 
@@ -26,6 +27,8 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 
     });
 });
+
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
 //Autofac kütüphanesini yükledikten sonra kullanmak için yazýyoruz.
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());

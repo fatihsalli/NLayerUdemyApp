@@ -16,4 +16,8 @@
     <ProjectReference Include="..\NLayer.Caching\NLayer.Caching.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
