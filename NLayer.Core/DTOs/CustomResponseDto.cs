@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace NLayer.Core.DTOs
 {
@@ -20,20 +15,20 @@ namespace NLayer.Core.DTOs
         public List<string> Errors { get; set; }
 
         //Static factory method tanımladık factory desing patternden gelir. Success ve Fail durumlarına göre geriye new instance lar dönüyoruz. (Nesne üretme yolu)
-        public static CustomResponseDto<T> Success(int statusCode,T data)
+        public static CustomResponseDto<T> Success(int statusCode, T data)
         {
             //return new CustomResponseDto<T> { StatusCode = statusCode, Data = data, Errors=null};=> Errors=null da diyebilirdik ancak zaten belirtmeye gerek olmaksızın Errors=null yapacaktır. Ekstra belirtmeye gerek yoktur.
-            return new CustomResponseDto<T> { StatusCode = statusCode, Data = data};
+            return new CustomResponseDto<T> { StatusCode = statusCode, Data = data };
         }
 
         public static CustomResponseDto<T> Success(int statusCode)
         {
-            return new CustomResponseDto<T> { StatusCode = statusCode};
+            return new CustomResponseDto<T> { StatusCode = statusCode };
         }
 
         public static CustomResponseDto<T> Fail(int statusCode, List<string> errors)
         {
-            return new CustomResponseDto<T> { StatusCode = statusCode,Errors=errors };
+            return new CustomResponseDto<T> { StatusCode = statusCode, Errors = errors };
         }
 
         public static CustomResponseDto<T> Fail(int statusCode, string error)

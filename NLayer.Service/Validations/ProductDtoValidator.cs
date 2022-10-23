@@ -4,7 +4,7 @@ using NLayer.Core.DTOs;
 namespace NLayer.Service.Validations
 {
     //Property üzerinde [Required(Error...)] yazmak yerine ayrı bir klasör "Validations" ve Product özelinde ProductDtoValidator adında bir class oluşturduk. "AbstractValidator" den miras aldırdık. Kendisi yüklediğimiz FluentValidation paketiyle gelmektedir.
-    public class ProductDtoValidator:AbstractValidator<ProductDto>
+    public class ProductDtoValidator : AbstractValidator<ProductDto>
     {
         public ProductDtoValidator()
         {

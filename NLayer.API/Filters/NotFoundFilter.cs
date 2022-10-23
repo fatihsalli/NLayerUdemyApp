@@ -29,7 +29,7 @@ namespace NLayer.API.Filters
             //Cast işlemi yaptık
             var id = (int)idValue;
             //(x=> x.Id==id) => x.Id'ye ulaşabilmek için yukarıda where T:class yerine BaseEntity yaptık.
-            var anyEntity =await _service.AnyAsync(x=> x.Id==id);
+            var anyEntity = await _service.AnyAsync(x => x.Id == id);
             //Yani data var ise yine yoluna devam edecek
             if (anyEntity)
             {

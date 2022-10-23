@@ -11,7 +11,7 @@ using NLayer.Service.Services;
 using System.Reflection;
 using Module = Autofac.Module; //Module hem Autofac hem de Reflection da olduğu için bu şekilde belirttik
 
-namespace NLayer.API.Modules
+namespace NLayer.WEB.Modules
 {
     //Autofac=> Module'den miras alıyor.
     public class RepoServiceModule : Module

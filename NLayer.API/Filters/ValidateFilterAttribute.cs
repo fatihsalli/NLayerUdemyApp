@@ -5,7 +5,7 @@ using NLayer.Core.DTOs;
 namespace NLayer.API.Filters
 {
     //Hazır bir filter attribute'unden miras aldırıyoruz. Senkron yazdık, NotFoundFilterda asenkron yazıldı. Eğitim amaçlı...
-    public class ValidateFilterAttribute:ActionFilterAttribute
+    public class ValidateFilterAttribute : ActionFilterAttribute
     {
         //Neden Service katmanında yazmadık? MVC ve Api tarafındaki yazacağımız filterlar farklı olduğu için.
         //Burada override ediyoruz metot çalışırken,metot çalıştığında vs. gibi hangi noktada müdahale etmek istiyorsak onu seçiyoruz.
@@ -18,9 +18,9 @@ namespace NLayer.API.Filters
             if (!context.ModelState.IsValid)
             {
                 //ModelState.Values üzerinden hataları aldık. SelectMany bize gelen Dictionaryden tek bir property almamızı sağladı.
-                var errors=context.ModelState.Values.SelectMany(x => x.Errors).Select(x=> x.ErrorMessage).ToList();
+                var errors = context.ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList();
                 //Client hatası olduğu için "BadRequestObjectResult" üzerinden "CustomResponseDto" olarak responselar için hazırladığımız modelimizi dönüyoruz.
-                context.Result=new BadRequestObjectResult(CustomResponseDto<NoContentDto>.Fail(400,errors));
+                context.Result = new BadRequestObjectResult(CustomResponseDto<NoContentDto>.Fail(400, errors));
             }
         }
 

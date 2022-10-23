@@ -1,27 +1,20 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLayer.API.Filters;
 using NLayer.API.Middlewares;
 using NLayer.API.Modules;
-using NLayer.Core.Repositories;
-using NLayer.Core.Services;
-using NLayer.Core.UnitOfWorks;
 using NLayer.Repository;
-using NLayer.Repository.Repositories;
-using NLayer.Repository.UnitOfWorks;
 using NLayer.Service.Mapping;
-using NLayer.Service.Services;
 using NLayer.Service.Validations;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //FluentValidation'ý kullanmak için AddControllers'dan sonra "AddFluentValidation" methodu ile ekledik. "RegisterValidatorsFromAssemblyContaining" ile Validationlarý yaptýðýmýz class'ý vererek bulmasýný saðladýk. "ValidateFilterAttribute" adýnda bir class oluþturduk bunu tüm Controllerlara tek tek tanýmlamak yerine options içerisinde ekledik. Bu sayede global olarak tüm controllerlara bu filterý uygulamýþ olduk.
-builder.Services.AddControllers(options =>  options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
+builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
 //FluentValidationla dönen response'u aþaðýda pasif hale getirdik. Bu baskýlamayý yapmaya MVC tarafýnda gerek yoktur. Filterýn MVC tarafýnda aktif olma durumu yoktur. Ancak Api tarafýnda biz custom olarak oluþturduðumuz response'u dönmek için aþaðýdaki ayarý yapmalýyýz. Bununla birlikte filter yazmamýz gereklidir. Üst satýrda yazýldý.
 builder.Services.Configure<ApiBehaviorOptions>(options =>
@@ -46,7 +39,7 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 //Database baðlantý
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
-    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"),option=>
+    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
     {
         //option.MigrationsAssembly("NLayer/Repository");
         //Üstteki gibi yazmak yerine dinamik þekilde vermek için Assembly kullandýk. Böylece Repository ismi deðiþse de bulabilmesi için.

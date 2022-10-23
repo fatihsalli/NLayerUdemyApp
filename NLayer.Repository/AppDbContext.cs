@@ -1,19 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NLayer.Core.Models;
-using NLayer.Repository.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Repository
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
         //Startupta veritabanı yolunu verebilmek için DbContextOptions oluşturuyoruz.
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
@@ -34,11 +28,11 @@ namespace NLayer.Repository
             modelBuilder.Entity<ProductFeature>().HasData(new ProductFeature()
             {
                 Id = 1,
-                Color="Kırmızı",
-                Height=150,
-                Width=12,
-                ProductId=1
-            }, 
+                Color = "Kırmızı",
+                Height = 150,
+                Width = 12,
+                ProductId = 1
+            },
             new ProductFeature()
             {
                 Id = 2,
