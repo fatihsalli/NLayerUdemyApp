@@ -106,3 +106,12 @@ Asp.Net Core Best Practises
 =>Filter kullanýmý araþtýrýlacak
 
 =>Cashleme nedir?
+
+
+-------------------------------------------------------------------------
+
+Eksikler
+
+-NLayer.Caching ProductServiceWithCaching içerisinde AnyAsync() metotu için tanýmlama yapmadýk.
+-NLayer.Caching ProductServiceWithCaching CacheAllProductsAsync() metotundaki => GetAll() metotu GetProductsWitCategory() olmalýdýr. Diðer türlü tekrar Cache yaptýðýmýzda Product'ý Category ile çektiðimde hata alýrýz.
+-NLayer.Repository AppDbContext SaveChanges() metotunda switch içinde item.Entity kaldý (Asenkron olaný düzelttiniz item.State olarak)

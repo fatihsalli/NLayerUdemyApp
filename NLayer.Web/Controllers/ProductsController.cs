@@ -60,7 +60,10 @@ namespace NLayer.Web.Controllers
             var categories = await _categoryService.GetAllAsync();
             var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
             ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name",product.CategoryId);
-            return View(_mapper.Map<ProductDto>(product));
+
+            var productDto = _mapper.Map<ProductDto>(product);
+
+            return View(productDto);
         }
 
         [HttpPost]
