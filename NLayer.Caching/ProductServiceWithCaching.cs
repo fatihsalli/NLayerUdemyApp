@@ -115,7 +115,7 @@ namespace NLayer.Caching
         //Çağırdığımızda Cache lemek için burada bir metot tanımladık.
         public async Task CacheAllProductsAsync()
         {
-            await _memoryCache.Set(CacheProductKey, _productRepository.GetProductsWithCategoryAsync());
+            _memoryCache.Set(CacheProductKey, await _productRepository.GetProductsWithCategoryAsync());
         }
 
 

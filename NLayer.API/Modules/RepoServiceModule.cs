@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using NLayer.Caching;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -38,7 +39,9 @@ namespace NLayer.API.Modules
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
             //"ProductService" yerine "ProductServiceWithNoCaching" i kullanması için burada belirtiyoruz. Burada şunu demek istiyoruz; IProductService interface'ini gördüğün zaman "ProductServiceWithNoCaching" in nesne örneğini al.
-            builder.RegisterType<ProductServiceWithNoCaching>().As<IProductService>();
+            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
+
+
 
 
 
