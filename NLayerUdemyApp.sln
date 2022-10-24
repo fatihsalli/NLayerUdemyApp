@@ -3,27 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Core", "NLayer.Core\NLayer.Core.csproj", "{52602449-025B-43F8-B47B-863E7DDF76C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Core", "NLayer.Core\NLayer.Core.csproj", "{52602449-025B-43F8-B47B-863E7DDF76C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Repository", "NLayer.Repository\NLayer.Repository.csproj", "{63656B0B-4FB6-4569-8A43-164804C2A637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Repository", "NLayer.Repository\NLayer.Repository.csproj", "{63656B0B-4FB6-4569-8A43-164804C2A637}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{A710E1B8-2A22-4D11-B554-DF41775EE33E}"
 	ProjectSection(SolutionItems) = preProject
-		Notes.txt = Notes.txt
 		N-Layer.Architecture.txt = N-Layer.Architecture.txt
+		Notes.txt = Notes.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Service", "NLayer.Service\NLayer.Service.csproj", "{C034004A-7D86-4EDD-A4B4-44021CBEBC04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Service", "NLayer.Service\NLayer.Service.csproj", "{C034004A-7D86-4EDD-A4B4-44021CBEBC04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.API", "NLayer.API\NLayer.API.csproj", "{0531DD92-6283-4906-92DD-4419B0539654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.API", "NLayer.API\NLayer.API.csproj", "{0531DD92-6283-4906-92DD-4419B0539654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Web", "NLayer.Web\NLayer.Web.csproj", "{1DE2BA46-3D46-4332-8758-84BF7688EE8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Web", "NLayer.Web\NLayer.Web.csproj", "{1DE2BA46-3D46-4332-8758-84BF7688EE8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Caching", "NLayer.Caching\NLayer.Caching.csproj", "{F1D31FC9-3CAB-4A52-8F6C-5ABEE9C0809F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Caching", "NLayer.Caching\NLayer.Caching.csproj", "{F1D31FC9-3CAB-4A52-8F6C-5ABEE9C0809F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7484EC2C-D382-4B90-80D4-F1714A0B2E07}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Ports.txt = Ports.txt
 	EndProjectSection
 EndProject
 Global

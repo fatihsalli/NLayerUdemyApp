@@ -6,6 +6,7 @@ using NLayer.Repository;
 using NLayer.Service.Mapping;
 using NLayer.Service.Validations;
 using NLayer.Web.Filters;
+using NLayer.Web.Services;
 using NLayer.WEB.Modules;
 using System.Reflection;
 
@@ -26,6 +27,19 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
 
     });
+});
+
+//Mvc projemizi Apiye dahil etmek için oluþturduðumuz ProductApiService ve CategoryApiService i burada tanýmladýk.
+builder.Services.AddHttpClient<ProductApiService>(options =>
+{
+    //appsetting de tanýmladýðýmýz BaseUrl'i verdik.
+    options.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddHttpClient<CategoryApiService>(options =>
+{
+    //appsetting de tanýmladýðýmýz BaseUrl'i verdik.
+    options.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });
 
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
