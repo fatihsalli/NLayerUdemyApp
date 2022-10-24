@@ -57,7 +57,7 @@ namespace NLayer.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(ProductDto productDto)
+        public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
             if (ModelState.IsValid)
             {

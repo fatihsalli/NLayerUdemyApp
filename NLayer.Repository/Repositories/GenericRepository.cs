@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NLayer.Core.Repositories;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace NLayer.Repository.Repositories
 {

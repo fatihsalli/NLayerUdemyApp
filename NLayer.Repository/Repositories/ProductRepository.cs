@@ -17,7 +17,8 @@ namespace NLayer.Repository.Repositories
         {
             //Eager Loading - data çekilirken categorylerinde alınmasını sağladık.
             //Lazy Loading - ihtiyaç halinde daha sonra çekilmesi durumu
-            return await _context.Products.Include(x => x.Category).ToListAsync();
+            var products = await _context.Products.Include(x => x.Category).ToListAsync();
+            return products;
         }
     }
 }
