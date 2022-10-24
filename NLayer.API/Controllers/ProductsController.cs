@@ -65,7 +65,11 @@ namespace NLayer.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
-            await _productService.UpdateAsync(_mapper.Map<Product>(productDto));
+            var product = _mapper.Map<Product>(productDto);
+            //CreatedDate sorunu yaşadığım için bu 2 satır kod düzenlendi daha sonra kontrol edilecek.
+            var productCreatedDate = await _productService.GetByIdAsync(product.Id);
+            product.CreatedDate=productCreatedDate.CreatedDate;
+            await _productService.UpdateAsync(product);
             //Geriye değer döndürmediğimiz için Success'in diğer methodunu kullandık. NoContentDto ile birlikte.
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
