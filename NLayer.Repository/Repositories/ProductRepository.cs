@@ -17,7 +17,8 @@ namespace NLayer.Repository.Repositories
         {
             //Eager Loading - data çekilirken categorylerinde alınmasını sağladık.
             //Lazy Loading - ihtiyaç halinde daha sonra çekilmesi durumu
-            var products = await _context.Products.Include(x => x.Category).ToListAsync();
+            //Burada gönderilen datayı track etmeyi bırakıyoruz bu sayede update ederken created date hatası almayacağız.
+            var products = await _context.Products.AsNoTracking().Include(x => x.Category).ToListAsync();
             return products;
         }
     }

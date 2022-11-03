@@ -66,9 +66,9 @@ namespace NLayer.API.Controllers
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
         {
             var product = _mapper.Map<Product>(productDto);
-            //CreatedDate sorunu yaşadığım için bu 2 satır kod düzenlendi daha sonra kontrol edilecek.
-            var productCreatedDate = await _productService.GetByIdAsync(product.Id);
-            product.CreatedDate=productCreatedDate.CreatedDate;
+            //CreatedDate sorunu yaşadığım için bu 2 satır kod düzenlendi daha sonra kontrol edilecek. Sorunu Fatih Hoca çözdü. ProductRepository-GetProductsWithCategoryAsync methodunda Cachelemeden önce çektiğimiz dataların track özelliğini kapatmamız gerekiyor. Yoksa aynı id de 2 farklı model olduğu için hata alıyoruz.
+            //var productCreatedDate = await _productService.GetByIdAsync(product.Id);
+            //product.CreatedDate=productCreatedDate.CreatedDate;
             await _productService.UpdateAsync(product);
             //Geriye değer döndürmediğimiz için Success'in diğer methodunu kullandık. NoContentDto ile birlikte.
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
