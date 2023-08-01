@@ -67,7 +67,7 @@ namespace NLayer.Web.Controllers
             //Kullanıcı hatalı bir değer girdiği taktirde tekrar categorileri gönderiyoruzki ekrandaki dropdown list tekrar dolsun.
             var categoriesDto = await _categoryService.GetAllAsync();
             ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name", productDto.CategoryId);
-            return View(productDto);
+            return View();
         }
 
         public async Task<IActionResult> Remove(int id)
